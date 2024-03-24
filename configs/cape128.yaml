@@ -1,0 +1,32 @@
+name: 'CAPEDataset'
+batch_size: 64
+
+data_dir: &data_dir "/disk1/chenyifan/mpc/mpc-cape128/"
+voxel_size: &voxel_size 0.01
+
+train:
+  data_dir: *data_dir
+  split: 'train'
+  augmentation: 
+    centralize: true
+    together:
+      scale_low: 1.0
+      scale_high: 1.0
+      degree_range: 180
+    pc2:
+      degree_range: 10.0
+      jitter_sigma: 0.0
+      jitter_clip: 0.0
+      dof: 'z'
+
+valid:
+  data_dir: *data_dir
+  split: 'val'
+  augmentation: 
+    centralize: true
+
+test:
+  data_dir: *data_dir
+  split: 'test'
+  augmentation: 
+    centralize: true

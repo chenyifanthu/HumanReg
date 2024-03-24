@@ -1,0 +1,25 @@
+model: "desc_net"
+
+# td parameter in Equ.(2)
+td_init: 1.0
+td_min: 0.02
+
+# Descriptor network configuration
+backbone_args:
+  channels: [-1, 32, 96, 64, 192]
+  tr_channels: [-1, 32, 32, 64, 96]
+  feat_channels: 64
+  n_classes: 14
+
+optimizer: "Adam"
+learning_rate:
+  init: 1.0e-3
+  decay_mult: 0.7
+  decay_step: 500000
+  clip: 1.0e-6
+weight_decay: 0.0
+grad_clip: 0.5
+
+# Supervised loss
+sup_loss:
+  lmda: 1.0

@@ -1,0 +1,37 @@
+name: 'Human4dDataset'
+data_dir: &data_dir "/disk1/chenyifan/human4d"
+voxel_size: &voxel_size 0.01
+batch_size: 64
+
+train:
+  data_dir: *data_dir
+  ped_ids: [0,1,2,3,4,5,6]
+  intervals: []
+  voxel_size: *voxel_size
+  augmentation: 
+    centralize: true
+    together:
+      scale_low: 0.9
+      scale_high: 1.1
+      degree_range: 180
+    pc2:
+      degree_range: 180.0
+      jitter_sigma: 0.03
+      jitter_clip: 0.01
+      dof: 'z'
+
+valid:
+  data_dir: *data_dir
+  ped_ids: [7,8]
+  intervals: [10,20,40]
+  voxel_size: *voxel_size
+  augmentation:
+    centralize: true
+
+test:
+  data_dir: *data_dir
+  ped_ids: [9]
+  intervals: []
+  voxel_size: *voxel_size
+  augmentation:
+    centralize: true

@@ -1,0 +1,29 @@
+model: "desc_net_self"
+
+# td parameter in Equ.(2)
+td_init: 1.0
+td_min: 0.02
+
+# Descriptor network configuration
+backbone_args:
+  channels: [-1, 32, 96, 64, 192]
+  tr_channels: [-1, 32, 32, 64, 96]
+  feat_channels: 64
+  n_classes: 14
+
+optimizer: "Adam"
+learning_rate:
+  init: 1.0e-4
+  decay_mult: 0.7
+  decay_step: 500000
+  clip: 1.0e-6
+weight_decay: 0.0
+grad_clip: 0.5
+
+# Self-supervised loss
+self_sup_loss:
+  k_neigh: 3
+  chamfer_weight: 1.0
+  smooth_weight: 1.0
+  class_weight: 0.1
+  translate_weight: 10.0
